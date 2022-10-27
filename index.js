@@ -10,7 +10,6 @@ const client = new Client({ intents: myIntents })
 const deadline = 'Oct 31 2022 08:41:41 UTC';
 
 console.log(deadline);
-console.log(today);
 
 function getTimeRemaining(endtime){
   const total = Date.parse(endtime) - Date.parse(new Date());
