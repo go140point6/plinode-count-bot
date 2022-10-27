@@ -33,7 +33,21 @@ console.log(getTimeRemaining(deadline).hours);
 console.log(getTimeRemaining(deadline).minutes);
 console.log(getTimeRemaining(deadline).seconds);
 
+function initializeClock(id, endtime) {
+  const clock = document.getElementById(id);
+  const timeinterval = setInterval(() => {
+    const t = getTimeRemaining(endtime);
+    clock.innerHTML = 'days: ' + t.days + '<br>' +
+                      'hours: '+ t.hours + '<br>' +
+                      'minutes: ' + t.minutes + '<br>' +
+                      'seconds: ' + t.seconds;
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  },1000);
+}
 
+console.log(initializeClock('clockdiv', deadline));
 
 
 /*
