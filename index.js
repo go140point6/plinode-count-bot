@@ -7,10 +7,41 @@ myIntents.add(Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS
 // Create a new client instance
 const client = new Client({ intents: myIntents })
 
-var node
+const deadline = 'Oct 31 2022 08:41:41 UTC';
 
-async function getNodes () {
-  res = await fetch('https://oracles.goplugin.co/api/nodesetting/nodelist').then(response => response.json())
+console.log(deadline);
+console.log(today);
+
+function getTimeRemaining(endtime){
+  const total = Date.parse(endtime) - Date.parse(new Date());
+  const seconds = Math.floor( (total/1000) % 60 );
+  const minutes = Math.floor( (total/1000/60) % 60 );
+  const hours = Math.floor( (total/(1000*60*60)) % 24 );
+  const days = Math.floor( total/(1000*60*60*24) );
+
+  return {
+    total,
+    days,
+    hours,
+    minutes,
+    seconds
+  };
+}
+
+console.log(getTimeRemaining(deadline).total);
+console.log(getTimeRemaining(deadline).days);
+console.log(getTimeRemaining(deadline).hours);
+console.log(getTimeRemaining(deadline).minutes);
+console.log(getTimeRemaining(deadline).seconds);
+
+
+
+
+/*
+async function getDate () {
+  let dateNow = 
+  console.log(moment.utc(moment(firstDate,"DD/MM/YYYY HH:mm:ss").diff(moment(secondDate,"DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss"))
+  
   let nodes = res.dashboard.node.toString()
   let inactive = res.dashboard.inactive.toString()
   //console.log('Nodes:', res.dashboard.node.toString())
@@ -19,7 +50,7 @@ async function getNodes () {
   console.log(`Inactive: ${inactive}`)
   client.user.setPresence({
     activities: [{
-      name: `Inactive: ${inactive}`,
+      name: `Countdown: ${inactive}`,
       type: `WATCHING`
       }]
     })
@@ -35,6 +66,7 @@ client.on('ready', () => {
   // Keep at minimum 1 hour, no need to do it more frequently
   setInterval(getNodes, Math.max(1, process.env.UPDATE_FREQUENCY || 1) * 60 * 1000)
 })
+*/
 
 // Login to Discord with your client's token
 client.login(process.env.DISCORD_TOKEN);
